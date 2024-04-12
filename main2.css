@@ -12,7 +12,13 @@ button {
     font-size: 20px;
 }
 
-
+.con{
+    background-image: url(./img/samantha-gades-BlIhVfXbi9s-unsplash.jpg);
+    background-size: cover;  
+    height:100vh ;
+    padding-top: 2rem;
+    text-align:center;
+    } 
 
 label {
     display: inline-block;

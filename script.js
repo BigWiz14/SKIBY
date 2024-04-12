@@ -1,44 +1,60 @@
-const apiKey = 'b49dee0d182c0131ec6cf3deae6de2bf';
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="; // Replace 'London' with your city or
-const serchBox = document.querySelector(".search input");
-const serchBtn = document.querySelector(".search button");
-const weatherIcon = document.querySelector('.weather-icon');
+document.addEventListener('DOMContentLoaded', function () {
+    const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+    const cartIcon = document.getElementById('cart-icon');
+    const cartItemsContainer = document.getElementById('cartItems');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const totalPriceDisplay = document.getElementById('totalPrice');
 
+    const cartItems = [];
+    let totalPrice = 0;
 
-async function checkWeather(city){
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);  //fetching the data from openweathermap API.
-    let data = await response.json();
-
-    console.log(data);
-
-    document.querySelector('.city').innerHTML = data.name;
-    document.querySelector('.temp').innerHTML = Math.round(data.main.temp) + "°c";
-    document.querySelector('.humidity').innerHTML = data.main.humidity + " %";
-    document.querySelector('.wind').innerHTML = data.wind.speed + "km/h";
-
-    if(data.weather[0].main == "clouds"){
-        weatherIcon.src = './img/cloudy.png';
-    }else if(data.weather[0].main == "clear"){
-        weatherIcon.src = './img/sun.png';
-    } else if(data.weather[0].main == 'rain'){
-        weatherIcon.src = "img/rainy-day(1).png";
-    } else if(data.weather[0].main == 'drizzle'){
-        weatherIcon.src = "img/rainy-day.png";
-    } else if(data.weather[0].main == 'mist'){
-        weatherIcon.src = "img/fog.png";
+    function addToCartClicked(event) {
+        event.preventDefault();
+        const item = {
+            name: event.target.dataset.item,
+            price: parseFloat(event.target.dataset.price) // Parse price to float
+        };
+        cartItems.push(item);
+        totalPrice += item.price; // Update total price
+        updateCart();
     }
-}
 
-serchBtn.addEventListener( "click", () => { 
-    checkWeather(serchBox.value);
+    function updateCart() {
+        cartIcon.innerHTML = `${cartItems.length}`;
+
+        cartItemsContainer.innerHTML = ''; // Clear previous items
+    
+        if (cartItems.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+        } else {
+            cartItems.forEach(item => {
+                const listItem = document.createElement('div');
+                listItem.textContent = `${item.name} - ₦${item.price.toFixed(2)}`; // Display item name and price
+                cartItemsContainer.appendChild(listItem);
+            });
+        }
+
+        totalPriceDisplay.textContent = `Total: ₦${totalPrice.toFixed(2)}`; // Update total price display
+    }
+
+    function checkoutClicked() {
+        // Replace this with your actual checkout logic
+        alert('Checkout clicked! Implement your checkout logic here.');
+    }
+
+    addToCartButtons.forEach(button => {
+        button.removeEventListener("click", addToCartClicked); // Remove existing event listener if any
+        button.addEventListener("click", addToCartClicked);
+    });
+
+    cartIcon.removeEventListener('click', showCartModal); // Remove existing event listener if any
+    cartIcon.addEventListener('click', showCartModal);
+
+    function showCartModal() {
+        const cartModal = new bootstrap.Modal(document.getElementById('cartModal'), {
+            keyboard: false
+        });
+        cartModal.show();
+    }
+
 });
-
-
-
-
-// checkWeather(city);
-
-
-
-
-
