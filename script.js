@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             cartItems.forEach(item => {
                 const listItem = document.createElement('div');
-                listItem.textContent = `${item.name} - ₦${item.price.toFixed(2)}`; // Display item name and price
+                listItem.textContent = `${item.name} - $${item.price.toFixed(2)}`; // Display item name and price
                 cartItemsContainer.appendChild(listItem);
             });
         }
 
-        totalPriceDisplay.textContent = `Total: ₦${totalPrice.toFixed(2)}`; // Update total price display
+        totalPriceDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`; // Update total price display
     }
 
     function checkoutClicked() {
@@ -57,4 +57,31 @@ document.addEventListener('DOMContentLoaded', function () {
         cartModal.show();
     }
 
+});
+// Example: Node.js backend (using the `stripe` npm package)
+
+const express = require('express');
+const stripe = require('stripe')('YOUR_SECRET_STRIPE_KEY'); // Your secret key from Stripe
+
+const app = express();
+app.use(express.json());
+
+app.post('/charge', async (req, res) => {
+  const { token } = req.body; // Get the token from frontend
+  try {
+    // Create a charge using the token
+    const charge = await stripe.charges.create({
+      amount: 5000, // The amount in cents (e.g., $50.00)
+      currency: 'usd',
+      source: token, // The token received from the frontend
+      description: 'Test Payment',
+    });
+    res.status(200).send({ success: true, charge });
+  } catch (error) {
+    res.status(500).send({ success: false, error: error.message });
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
