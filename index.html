@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./js/bootstrap.min.js">
     <link rel="stylesheet" href="main.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=ATemXbUtIXf_-Bk14rqt1ibFqRTeIdBeUeKqCjSnHWgyaS3rsZ0aGhtCfIPQmUiZHhooRr70gdr5kuBu&components=buttons"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -1767,11 +1768,33 @@
                         <!-- Cart items will be displayed here -->
                     </div>
                     <div class="text-end px-3" id="totalPrice">Your cart is empty</div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a type="button" href="https://www.paypal.com" class="btn btn-primary cursor-pointer" id="checkoutBtn"
->Checkout</a>
-                    </div>
+                    <div id="paypal-button-container"></div>
+
+                    <script>
+                      paypal.Buttons({
+                        createOrder: function(data, actions) {
+                          return actions.order.create({
+                            purchase_units: [{
+                              amount: {
+                                value: '10.00' // Total amount of the transaction (in USD)
+                              }
+                            }]
+                          });
+                        },
+                        onApprove: function(data, actions) {
+                          return actions.order.capture().then(function(details) {
+                            alert('Payment Successful! ' + details.payer.name.given_name);
+                            // You can also send the transaction details to your server here.
+                          });
+                        },
+                        onError: function(err) {
+                          console.log(err);
+                          alert('An error occurred while processing the payment');
+                        }
+                      }).render('#paypal-button-container'); // This renders the PayPal button inside the div with id 'paypal-button-container'
+                      
+                    </script>
+                    
 
                 </div>
             </div>
