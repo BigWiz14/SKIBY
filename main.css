@@ -1,5 +1,6 @@
 .card-img-topfluid{
-    height: 200px !important;
+    height: 400px !important;
+    width: 100% !important;
 }
 
 .carousel-item{
@@ -110,7 +111,7 @@ input[type="date"]{
  styling for the about us page
  ............................*/
  .mna{
-    width: 700px;
+    width: 1000px;
 }
 
 .mna2{
@@ -150,3 +151,4 @@ h1{
     color: rgb(97, 11, 11);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
