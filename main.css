@@ -5,6 +5,8 @@
 
 .carousel-item{
     max-height: 100vh !important;
+    position: relative;
+    motion-rotation: 100%;
 }
 
 .form-1 {
@@ -55,6 +57,7 @@ h1{
 
 .row{
     justify-content: start;
+    
 }
 
 /*..........................
@@ -151,4 +154,56 @@ h1{
     color: rgb(97, 11, 11);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.perfect{
+    padding-top: 5rem;
+}
+.card {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 4px solid black;
+}
 
+.parentcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.man {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 4px solid black;
+}
+
+/* /* .pet {
+    display: flex;
+    justify-content: center;
+} */
+/*  
+.parentcontainer :hover {
+    background-color:rgb(255, 123, 0); ;
+    outline: 4px solid black;
+    color:white; 
+}*/
+
+.man :hover {
+    background-color: black;
+    color: white;
+    
+}  
+
+
+/* .me{
+ margin-left: 80px;
+ background-color: aqua;
+} */
+
+/* .manu {
+padding-top: 5rem;
+padding-left: 2rem;
+} */
+ .pere{
+    display: flex;
+    justify-content: end;
+ }
