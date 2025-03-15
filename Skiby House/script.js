@@ -86,25 +86,25 @@ document.addEventListener('DOMContentLoaded', function () {
 //   console.log('Server is running on port 3000');
 // });
 
-paypal.Buttons({
-    createOrder: function (data, actions) {
-        return actions.order.create({
-            purchase_units: [{
-                amount: {
-                    value: '10.00' // Total amount of the transaction (in USD)
-                }
-            }]
-        });
-    },
-    onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-            alert('Payment Successful! ' + details.payer.name.given_name);
-            // You can also send the transaction details to your server here.
-        });
-    },
-    onError: function (err) {
-        console.log(err);
-        alert('An error occurred while processing the payment');
-    }
-}).render('#paypal-button-container'); // This renders the PayPal button inside the div with id 'paypal-button-container'
+// paypal.Buttons({
+//     createOrder: function (data, actions) {
+//         return actions.order.create({
+//             purchase_units: [{
+//                 amount: {
+//                     value: '10.00' // Total amount of the transaction (in USD)
+//                 }
+//             }]
+//         });
+//     },
+//     onApprove: function (data, actions) {
+//         return actions.order.capture().then(function (details) {
+//             alert('Payment Successful! ' + details.payer.name.given_name);
+//             // You can also send the transaction details to your server here.
+//         });
+//     },
+//     onError: function (err) {
+//         console.log(err);
+//         alert('An error occurred while processing the payment');
+//     }
+// }).render('#paypal-button-container'); // This renders the PayPal button inside the div with id 'paypal-button-container'
 
