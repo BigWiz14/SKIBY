@@ -60,31 +60,31 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // Example: Node.js backend (using the `stripe` npm package)
 
-const express = require('express');
-const stripe = require('stripe')('YOUR_SECRET_STRIPE_KEY'); // Your secret key from Stripe
+// const express = require('express');
+// const stripe = require('stripe')('YOUR_SECRET_STRIPE_KEY'); // Your secret key from Stripe
 
-const app = express();
-app.use(express.json());
+// const app = express();
+// app.use(express.json());
 
-app.post('/charge', async (req, res) => {
-  const { token } = req.body; // Get the token from frontend
-  try {
-    // Create a charge using the token
-    const charge = await stripe.charges.create({
-      amount: 5000, // The amount in cents (e.g., $50.00)
-      currency: 'usd',
-      source: token, // The token received from the frontend
-      description: 'Test Payment',
-    });
-    res.status(200).send({ success: true, charge });
-  } catch (error) {
-    res.status(500).send({ success: false, error: error.message });
-  }
-});
+// app.post('/charge', async (req, res) => {
+//   const { token } = req.body; // Get the token from frontend
+//   try {
+//     // Create a charge using the token
+//     const charge = await stripe.charges.create({
+//       amount: 5000, // The amount in cents (e.g., $50.00)
+//       currency: 'usd',
+//       source: token, // The token received from the frontend
+//       description: 'Test Payment',
+//     });
+//     res.status(200).send({ success: true, charge });
+//   } catch (error) {
+//     res.status(500).send({ success: false, error: error.message });
+//   }
+// });
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+// app.listen(3000, () => {
+//   console.log('Server is running on port 3000');
+// });
 
 paypal.Buttons({
     createOrder: function (data, actions) {
