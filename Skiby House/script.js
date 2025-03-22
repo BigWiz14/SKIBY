@@ -1,9 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded",  () => {
     const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
     const cartIcon = document.getElementById('cart-icon');
     const cartItemsContainer = document.getElementById('cartItems');
-    const checkoutBtn = document.getElementById('checkoutBtn');
+    const checkoutBtn = document.querySelector('checkoutBtn');
     const totalPriceDisplay = document.getElementById('totalPrice');
+
 
     const cartItems = [];
     let totalPrice = 0;
@@ -21,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateCart() {
         cartIcon.innerHTML = `${cartItems.length}`;
-
         cartItemsContainer.innerHTML = ''; // Clear previous items
     
         if (cartItems.length === 0) {
@@ -36,10 +36,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         totalPriceDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`; // Update total price display
     }
+    
 
     function checkoutClicked() {
         // Replace this with your actual checkout logic
         alert('Checkout clicked! Implement your checkout logic here.');
+    }
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", checkoutClicked);
+    } else {
+        console.error("Checkout button not found!"
+            
+        );
     }
 
     addToCartButtons.forEach(button => {
@@ -56,55 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         cartModal.show();
     }
+    
 
+    
 });
-// Example: Node.js backend (using the `stripe` npm package)
-
-// const express = require('express');
-// const stripe = require('stripe')('YOUR_SECRET_STRIPE_KEY'); // Your secret key from Stripe
-
-// const app = express();
-// app.use(express.json());
-
-// app.post('/charge', async (req, res) => {
-//   const { token } = req.body; // Get the token from frontend
-//   try {
-//     // Create a charge using the token
-//     const charge = await stripe.charges.create({
-//       amount: 5000, // The amount in cents (e.g., $50.00)
-//       currency: 'usd',
-//       source: token, // The token received from the frontend
-//       description: 'Test Payment',
-//     });
-//     res.status(200).send({ success: true, charge });
-//   } catch (error) {
-//     res.status(500).send({ success: false, error: error.message });
-//   }
-// });
-
-// app.listen(3000, () => {
-//   console.log('Server is running on port 3000');
-// });
-
-// paypal.Buttons({
-//     createOrder: function (data, actions) {
-//         return actions.order.create({
-//             purchase_units: [{
-//                 amount: {
-//                     value: '10.00' // Total amount of the transaction (in USD)
-//                 }
-//             }]
-//         });
-//     },
-//     onApprove: function (data, actions) {
-//         return actions.order.capture().then(function (details) {
-//             alert('Payment Successful! ' + details.payer.name.given_name);
-//             // You can also send the transaction details to your server here.
-//         });
-//     },
-//     onError: function (err) {
-//         console.log(err);
-//         alert('An error occurred while processing the payment');
-//     }
-// }).render('#paypal-button-container'); // This renders the PayPal button inside the div with id 'paypal-button-container'
 

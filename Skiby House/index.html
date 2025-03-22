@@ -40,7 +40,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="IOS.html">IOS</a></li>
                             <li><a class="dropdown-item" href="ANDROID & WINDOWS.html">ANDROID & WINDOWS</a></li>
-                            <li><a class="dropdown-item" href="accessories.html">ACCESSORIES</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -1816,9 +1815,10 @@
                 </div>
             </div> 
         </div>
-    </section>
-   
-    <section>
+    </section> -->
+     <!-- modal for the cart items -->
+     <section>
+        <!-- Modal for displaying cart items -->
         <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -1827,17 +1827,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="cartItems">
-                         
+                        <!-- Cart items will be displayed here -->
                     </div>
                     <div class="text-end px-3" id="totalPrice">Your cart is empty</div>
-                    <div id="paypal-button-container"></div>
-
-
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary cursor-pointer" id="checkoutBtn"
+                            onclick="alert('Order placed!!')">Checkout</button>
+                    </div>
 
                 </div>
             </div>
         </div>
-    </section>-->
+
+
+
+
+    </section>
+   
+    
     <footer>
         <div class="container-fluid bg-dark text-light p-5 mt-4">
             <div class="row mt-4 justify-content-around">
@@ -1862,9 +1870,7 @@
 
                         <li><a class="text-decoration-none text-light fw-bold" href="GAMING.html">Gaming Store</a>
                         </li>
-                        <li><a class="text-decoration-none text-light fw-bold" href="accessories.html">Accessories
-                                Store</a>
-                        </li>
+                       
                         <li><a class="text-decoration-none text-light fw-bold" href="ANDROID & WINDOWS.html">Android
                                 &
                                 Windows Store</a></li>

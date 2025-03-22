@@ -285,7 +285,7 @@ div#slider figure {
     left: 0;
     text-align: left;
     font-size: 0;
-    animation: 10s sliding ease infinite;
+    animation: 25s sliding ease infinite;
 }
 
 /* Slider indicator */
