@@ -251,3 +251,9 @@ div#slider figure {
     animation: indicating 5s ease infinite; 
     
 }
+.nengi{
+    display: flex;
+  background: #212529;
+  justify-content: center;
+  justify-content: baseline;
+}
