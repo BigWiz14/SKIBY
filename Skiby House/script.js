@@ -65,7 +65,5 @@ document.addEventListener("DOMContentLoaded",  () => {
         cartModal.show();
     }
     
-
     
-});
-
+})

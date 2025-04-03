@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.5/css/bootstrap.min.css">
 </head>
 
 <body class="plaence">
@@ -42,7 +43,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="IOS.html">IOS</a></li>
                             <li><a class="dropdown-item" href="ANDROID & WINDOWS.html">ANDROID & WINDOWS</a></li>
-                            
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -430,7 +431,7 @@
                             <a class="navbar-brand" href="#">
                                 <img src="./img2/5EhqPM-LogoMakr.png" alt="logo" class="img-fluid w-50">
                             </a>
-                            <h5 class="card-title"><b><br>FC 24</b> </h5>
+                            <h5 class="card-title"><br>FC 24</h5>
                             <p class="card-text"><br>$1,099.00 <br><b> IN STOCK</b>
                             </p>
                             <div class="text-center">
@@ -614,7 +615,7 @@
                             <a class="navbar-brand" href="#">
                                 <img src="./img2/5EhqPM-LogoMakr.png" alt="logo" class="img-fluid w-50">
                             </a>
-                            <h5 class="card-title"><br>Playstaion 5 Controller</h5>
+                            <h5 class="card-title"><br>Playstation 5 Controller</h5>
                             <p class="card-text"><br>$379.99<br><b> IN STOCK</b>
                             </p>
                             <div class="text-center">
@@ -1767,8 +1768,8 @@
             </div> -->
         </div>
     </section>
-     <!-- modal for the cart items -->
-     <section>
+    <!-- modal for the cart items -->
+    <section>
         <!-- Modal for displaying cart items -->
         <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -1786,6 +1787,33 @@
                         <button type="button" class="btn btn-primary cursor-pointer" id="checkoutBtn"
                             onclick="alert('Order placed!!')">Checkout</button>
                     </div>
+
+
+                    <div id="paypal-button-container"></div>
+
+                    <script>
+                        paypal.Buttons({
+                            createOrder: function (data, actions) {
+                                return fetch("/pay", { method: "POST" })
+                                    .then(response => response.json())
+                                    .then(order => order.id);
+                            },
+                            onApprove: function (data, actions) {
+                                return fetch(`/capture/${data.orderID}`, { method: "POST" })
+                                    .then(response => response.json())
+                                    .then(details => {
+                                        alert("Payment completed successfully!");
+                                        console.log(details);
+                                    })
+                                    .catch(error => console.error("Error capturing payment:", error));
+                            }
+
+                        }).render("#paypal-button-container");
+                    </script>
+
+
+
+
 
                 </div>
             </div>
@@ -1818,7 +1846,7 @@
 
                         <li><a class="text-decoration-none text-light fw-bold" href="GAMING.html">Gaming Store</a>
                         </li>
-                       
+
                         <li><a class="text-decoration-none text-light fw-bold" href="ANDROID & WINDOWS.html">Android &
                                 Windows Store</a></li>
                         <li><a class="text-decoration-none text-light fw-bold" href="IOS.html">IOS Store</a></li>
@@ -1836,6 +1864,9 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
                             <a href="https://www.instagram.com"><i class="bi bi-instagram fs-1"></i></a>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <a href="https://twitter.com/"><i class="fab fa-twitter fs-1"></i></a>
                         </div>
                         <p class="pere">Instagram@Official_SKIBY<br>Facebook@Official.SKIBY<br>Snapchat@OfficialSKIBY
                         </p>
